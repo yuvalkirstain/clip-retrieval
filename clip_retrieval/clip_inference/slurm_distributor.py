@@ -136,7 +136,7 @@ class SlurmDistributor:
         worker_args_path = self._write_json_worker_args(worker_args, cache_path)
 
         venv = os.environ["VIRTUAL_ENV"]
-        scomment = ("--comment " + slurm_args["job_comment"]) if ["job_comment"] is not None else ""
+        scomment = ("--comment " + slurm_args["job_comment"]) if slurm_args["job_comment"] is not None else ""
         sbatch_scomment = (
             ("#SBATCH --comment " + slurm_args["job_comment"]) if slurm_args["job_comment"] is not None else ""
         )
@@ -164,6 +164,6 @@ export WORLD_SIZE={slurm_args["nodes"] * 8} # 8 gpus per node
 export WORKER_ARGS_PATH={worker_args_path}
 
 # Run the internal script
-source {venv}/bin/activate
+# source {venv}/bin/activate
 srun --cpu_bind=v --accel-bind=gn {scomment} clip-retrieval inference.slurm_worker
 """
