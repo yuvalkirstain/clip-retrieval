@@ -135,7 +135,7 @@ class SlurmDistributor:
         # write the worker args to a file
         worker_args_path = self._write_json_worker_args(worker_args, cache_path)
 
-        venv = os.environ["VIRTUAL_ENV"]
+        # venv = os.environ["VIRTUAL_ENV"]
         scomment = ("--comment " + slurm_args["job_comment"]) if slurm_args["job_comment"] is not None else ""
         sbatch_scomment = (
             ("#SBATCH --comment " + slurm_args["job_comment"]) if slurm_args["job_comment"] is not None else ""
