@@ -164,6 +164,5 @@ export WORLD_SIZE={slurm_args["nodes"] * 8} # 8 gpus per node
 export WORKER_ARGS_PATH={worker_args_path}
 
 # Run the internal script
-# source {venv}/bin/activate
 srun --cpu_bind=v --accel-bind=gn {scomment} clip-retrieval inference.slurm_worker
 """
